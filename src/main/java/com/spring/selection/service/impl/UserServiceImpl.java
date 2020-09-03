@@ -17,4 +17,10 @@ public class UserServiceImpl implements UserService{
 		dao.register(user);
 	}
 
+	@Override
+	public User login(User user) throws Exception {
+		
+		return dao.login(user);
+	}
+
 }

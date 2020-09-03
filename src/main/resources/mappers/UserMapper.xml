@@ -29,7 +29,14 @@
 		parameterType="com.spring.selection.model.User">
 		DELETE FROM user WHERE user_no=#{user_no};
 	</delete>
-
+	
+	<!-- 로그인 -->
+	<select id="login" 
+		resultMap="userMap"
+		resultType="com.spring.selection.model.User">
+		SELECT user_id, user_pw FROM user
+		WHERE user_id = #{user_id} AND user_pw = #{user_pw}
+	</select>
 
 
 

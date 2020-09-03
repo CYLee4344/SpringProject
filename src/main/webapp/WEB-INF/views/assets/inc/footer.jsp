@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="footer">
     <ul id="first_row">
         <li>
-            <a href="Login.jsp">로그인</a>
+            <a href="Login.jsp">
+	            <c:if test="${user != null}">로그아웃</c:if>
+				<c:if test="${user == null}">로그인</c:if>
+			</a>
         </li>
         <li>
             <a href="CustomerService.jsp">고객센터</a>

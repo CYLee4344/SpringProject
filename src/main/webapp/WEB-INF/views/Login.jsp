@@ -27,7 +27,7 @@
     <!-- 로그인 정보 입력 -->
 	<div class="content">
     <div class="login_input_area">
-        <form id="loginForm" class="form-inline" method="post" >
+        <form id="loginForm" class="form-inline" method="post" action="${pageContext.request.contextPath}/UserLogin.do" >
             <input id="user_id" type="text" name="user_id" class="form-control" placeholder="아이디를 입력하세요." />
             <br />
             <input id="user_pw" type="password" name="user_pw" class="form-control" placeholder="비밀번호를 입력하세요." />
@@ -93,60 +93,7 @@
             });
 
             /** 로그인 양식 입력 시 **/
-            $("#loginForm").submit(function(e) {
-                // <form>태그가 submit되어 페이지가 이동되는 것을 방지한다.
-                e.preventDefault();
-
-                // 사용자의 입력값을 가져온다.
-                var uid = $("#user_id").val();
-                var pwd = $("#user_pw").val();
-
-                // 올바른 ID와 PW를 입력 시,
-                if (uid == "ajax" && pwd == "123qwe!@#" ) {
-                	location.href='index.jsp';
-                } else {
-    	            $.ajax( {
-    	                url:"../api/post.do",
-    	                method: "post",
-    	                data: { user_id: uid, user_pw: pwd },
-    	                dataType: 'html',
-    	                success: function(req) {
-    	                    $("#result").html(req);
-    	                }
-    	            }); // end $ .ajax
-                    $("#user_pw").val(""); // 로그인 실패 시 비밀번호 초기화
-                    $("#user_pw").focus();
-                } // 틀린 ID와 PW를 입력
-            }); // end submit
-
-            /** 3회, 5회 잘못입력 시 오류를 위한 조건문 **/
-         	var counter = 0;
-         	$("#btn").click(function(e) {
-         		counter++;
-    	     	
-         		if (counter == 3) {
-         			swal('잘못된 아이디 또는 비밀번호를 <br/>3회 입력하셨습니다.','5회이상 입력시<br/>로그인은 제한됩니다.','warning');
-                        
-    	     	} else if (counter == 5) {
-    	     		swal({
-                        title: '<font color="#E46764">잘못된 아이디 또는 비밀번호를<br/>5회 입력하셨습니다.</font>', // 제목
-                        html: '비밀번호 찾기 페이지로 이동합니다.', // 내용
-                        type: 'error',              // 종류
-                        showCloseButton: true,      // 닫기 버튼 표시 여부
-                        confirmButtonText: '확인',  // 확인버튼 표시 문구
-                        confirmButtonColor: '#a00', // 확인버튼 색상
-                        showCancelButton: true,     // 취소버튼 표시 여부
-                        cancelButtonText: '취소',   // 취소버튼 표시 문구
-                        cancelButtonColor: '#f60'   // 취소버튼 색상
-                    }).then(function(result) {
-                    	if (result.value) {
-                    		location.href='Find_PW.jsp'
-                    	} else if (result.dismiss) {
-                    		location.href='Login.jsp'
-                    	}
-                    });
-        	    } 
-         	});
+            
         });
     </script>
 </body>

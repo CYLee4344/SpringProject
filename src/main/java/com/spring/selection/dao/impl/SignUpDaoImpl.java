@@ -17,4 +17,10 @@ public class SignUpDaoImpl implements SignUpDao {
 	public void register(User user) throws Exception {
 		sqlSession.insert("UserMapper.register", user);
 	}
+
+	@Override
+	public User login(User user) throws Exception {
+	
+		return sqlSession.selectOne("UserMapper.login", user);
+	}
 }

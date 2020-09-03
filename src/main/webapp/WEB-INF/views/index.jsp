@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +19,7 @@
     <div id="header">
         <ul>
             <li class="search"><a href="#"><img src="assets/image/search.png"></a></li>
-            <li class="logo"><a href="index.jsp"><span>THE <strong>SELECTION</strong>.COM</span></a></li>
+            <li class="logo"><a href="${pageContext.request.contextPath}/index.do"><span>THE <strong>SELECTION</strong>.COM</span></a></li>
             <li class="cart"><a href="ShoppingCart.jsp"><img src="assets/image/shopping_cart.png"></a></li>
 
             <div class="searchbox">
@@ -27,7 +30,10 @@
 
         <div id="menu_bar">
             <ul>
-                <li><a href="Best.jsp">베스트</a></li>
+                <li><a href="Best.jsp">
+				<c:if test="${user != null}">${user.user_id}</c:if>
+				<c:if test="${user == null}">없음</c:if>
+				</a></li>
                 <li><a href="New.jsp">신상품</a></li>
                 <li><a href="Recommend.jsp">추천상품</a></li>
                 <li><a href="Top.jsp">탑</a></li>
@@ -113,7 +119,10 @@
             </div>
             <ul id="first_row">
                 <li>
-                    <a href="${pageContext.request.contextPath}/login.do">로그인<img src="assets/image/next.png"></a>
+                    <a href="${pageContext.request.contextPath}/login.do">
+                    	<c:if test="${user != null}">로그아웃</c:if>
+						<c:if test="${user == null}">로그인</c:if>
+                    <img src="assets/image/next.png"></a>
                 </li>
                 <li>
                     <a href="CustomerService.jsp">고객센터<img src="assets/image/next.png"></a>
