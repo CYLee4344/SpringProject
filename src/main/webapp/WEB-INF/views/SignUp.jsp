@@ -38,7 +38,7 @@
 
     <!-- 가입폼 시작 -->
     <div id="form_wrap">
-        <form method="post" action="${pageContext.request.contextPath}/register.do" class="form-horizontal" name="join_form" id="join_form">
+        <form method="post" action="${pageContext.request.contextPath}/UserRegister.do" class="form-horizontal" name="join_form" id="join_form">
             <div class="form-group">
                 <label for="user_id" class="col-md-2">아이디 <span class="identify">*</span></label>
                 <div class="col-md-10">

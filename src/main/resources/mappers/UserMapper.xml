@@ -15,6 +15,7 @@
 		<result property="address_detail" column="address_detail" />
 	</resultMap>
 	
+	<!-- 회원가입 -->
 	<insert id="register"
 		parameterType="com.spring.selection.model.User"
 		useGeneratedKeys="true"
@@ -22,6 +23,12 @@
 		INSERT INTO user (user_no, user_id, user_pw, user_email, user_tel, user_name, postcode, address, address_detail)
 		VALUES (#{user_no}, #{user_id}, #{user_pw}, #{user_email}, #{user_tel}, #{user_name}, #{postcode}, #{address}, #{address_detail});
 	</insert>
+	
+	<!-- 탈퇴 -->
+	<delete id="delete"
+		parameterType="com.spring.selection.model.User">
+		DELETE FROM user WHERE user_no=#{user_no};
+	</delete>
 
 
 
