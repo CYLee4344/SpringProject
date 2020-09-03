@@ -5,7 +5,7 @@
     <ul>
         <li><a href="#"><img src="assets/image/menu.png"></a></li>
         <li><a href="${pageContext.request.contextPath}/login.do"><img src="assets/image/lock.png"></a></li>
-        <li><a href="index.jsp"><img src="assets/image/home.png"></a></li>
+        <li><a href="${pageContext.request.contextPath}/index.do"><img src="assets/image/home.png"></a></li>
         <li><a href="MyHeart.jsp"><img src="assets/image/heart.png"></a></li>
         <li><a href="Order_List.jsp"><img src="assets/image/person.png"></a></li>
     </ul>

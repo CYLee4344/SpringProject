@@ -43,6 +43,12 @@ public class HomeController {
 		return "SignUp";
 	}
 	
+	@RequestMapping(value = "/index.do")
+	public String index() {
+		
+		return "index";
+	}
+	
 	@RequestMapping(value = "/UserRegister.do", method = RequestMethod.POST)
 	public String postRegister(User user) throws Exception {
 		service.register(user);
