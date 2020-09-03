@@ -2,13 +2,13 @@ package com.spring.selection.dao.impl;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-import com.spring.selection.dao.SignUpDao;
+import com.spring.selection.dao.UserDao;
 import com.spring.selection.model.User;
 
-@Repository
-public class SignUpDaoImpl implements SignUpDao {
+@Service
+public class UserDaoImpl implements UserDao {
 	
 	@Autowired
 	SqlSession sqlSession;
@@ -23,4 +23,12 @@ public class SignUpDaoImpl implements SignUpDao {
 	
 		return sqlSession.selectOne("UserMapper.login", user);
 	}
+
+	@Override
+	public void userDelete(User user) throws Exception {
+		
+		sqlSession.delete("UserMapper.userDelete", user);
+		
+	}
+
 }

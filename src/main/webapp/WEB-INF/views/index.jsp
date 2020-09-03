@@ -119,9 +119,8 @@
             </div>
             <ul id="first_row">
                 <li>
-                    <a href="${pageContext.request.contextPath}/login.do">
-                    	<c:if test="${user != null}">로그아웃</c:if>
-						<c:if test="${user == null}">로그인</c:if>
+                 	<c:if test="${user != null}"><a href="${pageContext.request.contextPath}/UserLogout.do">로그아웃</c:if>
+					<c:if test="${user == null}"><a href="${pageContext.request.contextPath}/login.do">로그인</c:if>
                     <img src="assets/image/next.png"></a>
                 </li>
                 <li>

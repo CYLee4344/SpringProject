@@ -44,4 +44,16 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/mypage.do")
+	public String myheart() {
+		
+		return "MyPage";
+	}
+	
+	@RequestMapping(value = "/update_info.do")
+	public String update_info() {
+		
+		return "Update_Info";
+	}
+	
 }

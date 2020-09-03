@@ -51,5 +51,17 @@ public class UserController {
 		
 		return "redirect:/";
 	}
+	
+	/** È¸¿øÅ»Åð */
+	@RequestMapping(value = "/UserDelete.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String userDelete(User user, HttpSession session) throws Exception {
+		
+		User user1 = (User) session.getAttribute("user");
+		
+		service.userDelete(user1);
+		session.invalidate();
+		
+		return "redirect:/";
+	}
 
 }

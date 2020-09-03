@@ -6,4 +6,6 @@ public interface UserService {
 	public void register(User user) throws Exception;
 	
 	public User login(User user) throws Exception;
+	
+	public void userDelete(User user) throws Exception;
 }

@@ -24,23 +24,19 @@
 		VALUES (#{user_no}, #{user_id}, #{user_pw}, #{user_email}, #{user_tel}, #{user_name}, #{postcode}, #{address}, #{address_detail});
 	</insert>
 	
-	<!-- 탈퇴 -->
-	<delete id="delete"
-		parameterType="com.spring.selection.model.User">
-		DELETE FROM user WHERE user_no=#{user_no};
-	</delete>
-	
 	<!-- 로그인 -->
 	<select id="login" 
 		resultMap="userMap"
 		resultType="com.spring.selection.model.User">
-		SELECT user_id, user_pw FROM user
-		WHERE user_id = #{user_id} AND user_pw = #{user_pw}
+		SELECT user_id, user_pw, user_name FROM user
+		WHERE user_id = #{user_id} AND user_pw = #{user_pw};
 	</select>
-
-
-
-
-
-
+	
+	<!-- 탈퇴 -->
+	<delete id="userDelete"
+		parameterType="com.spring.selection.model.User">
+		DELETE FROM user WHERE user_id = #{user_id} AND user_pw = #{user_pw};
+	</delete>
+	
+	
 </mapper>
