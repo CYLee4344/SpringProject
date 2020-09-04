@@ -8,7 +8,10 @@
         <li><a href="${pageContext.request.contextPath}/login.do"><img src="assets/image/lock.png"></a></li>
         <li><a href="${pageContext.request.contextPath}/index.do"><img src="assets/image/home.png"></a></li>
         <li><a href="MyHeart.jsp"><img src="assets/image/heart.png"></a></li>
-        <li><a href="${pageContext.request.contextPath}/mypage.do"><img src="assets/image/person.png"></a></li>
+        <li>
+        	<c:if test="${user != null}"><a href="${pageContext.request.contextPath}/mypage.do"><img src="assets/image/person.png"></a></c:if>
+        	<c:if test="${user == null}"><a href="${pageContext.request.contextPath}/login.do"><img src="assets/image/person.png"></a></c:if>
+        </li>
     </ul>
 </div>
 

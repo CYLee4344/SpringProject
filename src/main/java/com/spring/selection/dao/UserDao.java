@@ -9,5 +9,7 @@ public interface UserDao {
 	public User login(User user) throws Exception;
 	
 	public void userDelete(User user) throws Exception;
+	
+	public void userUpdate(User user) throws Exception;
 
 }

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html>
 <head>
@@ -32,7 +35,7 @@
             <br />
             <input id="user_pw" type="password" name="user_pw" class="form-control" placeholder="비밀번호를 입력하세요." />
             <!-- ajax 결과를 출력하기 위한 HTML -->
-			<div id="result"></div>
+			<p id="ajax" style="color: red; font-size: 12px; margin-top: 15px; margin-bottom: -15px;"></p>
             <br />
             <button type="submit" class="btn btn-primary" id="btn">로그인</button>
         </form>
@@ -65,7 +68,6 @@
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
         $(function() {
-
             $(".search").click(function() {
                 $(".title").toggle();
                 $(".searchbox").toggle();
@@ -91,8 +93,28 @@
             $("#user_pw").blur(function() {
                 $("#user_pw").attr("placeholder", "비밀번호를 입력하세요.");
             });
+            
+            
+            $("#loginForm").submit(function(e) {
+            	e.preventDefault();
+            	var uid = $("#user_id").val();
+            	var pwd = $("#user_pw").val();
+            	
+            	$.ajax({
+            		type: "post",
+            		url: "${pageContext.request.contextPath}/UserLogin.do",
+            		data: {user_id: uid, user_pw: pwd},
+					success: function(data) {
+						if(data == "false")
+					   		$("#ajax").html("아이디 또는 비밀번호가 맞지  않습니다.");
+						else
+							location.href="${pageContext.request.contextPath}/index.do";
+					}
+					            		
+            	});
+			}); 
 
-            /** 로그인 양식 입력 시 **/
+           
             
         });
     </script>

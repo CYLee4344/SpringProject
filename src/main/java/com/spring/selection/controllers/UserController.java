@@ -1,12 +1,17 @@
 package com.spring.selection.controllers;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.selection.model.User;
@@ -27,7 +32,7 @@ public class UserController {
 	
 	/** 로그인 */
 	@RequestMapping(value = "/UserLogin.do", method = RequestMethod.POST)
-	public String login(User user, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
+	public void login(User user, HttpServletRequest req, RedirectAttributes rttr, HttpServletResponse response) throws Exception {
 		
 		HttpSession session = req.getSession();
 		// 세션 유지 시간 session.setMaxInactiveInterval();
@@ -35,13 +40,33 @@ public class UserController {
 		
 		if(login == null) {
 			session.setAttribute("user", null);
-			rttr.addFlashAttribute("msg", false);
+			response.getWriter().print(false);
+//			rttr.addFlashAttribute("msg", false);
 		} else {
 			session.setAttribute("user", login);
+			response.getWriter().print(true);
 		}
-
-		return "redirect:/";
 	}
+	
+	
+//	@RequestMapping(value = "/UserLogin.do", method = RequestMethod.POST)
+//	public ModelAndView login(@ModelAttribute User user, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
+//		ModelAndView mav = new ModelAndView();
+//		HttpSession session = req.getSession();
+//		// 세션 유지 시간 session.setMaxInactiveInterval();
+//		User login = service.login(user);
+//		
+//		if(login == null) {
+//			session.setAttribute("user", null);
+//			mav.setViewName("Login");
+//			mav.addObject("msg", false);
+//		} else {
+//			session.setAttribute("user", login);
+//			mav.setViewName("index");
+//		}
+//
+//		return mav;
+//	}
 	
 	/** 로그아웃 */
 	@RequestMapping(value = "/UserLogout.do", method = RequestMethod.GET)
@@ -50,6 +75,16 @@ public class UserController {
 		session.invalidate();
 		
 		return "redirect:/";
+	}
+	
+	/** 회원정보수정 */
+	@RequestMapping(value = "/UserUpdate.do", method = RequestMethod.POST)
+	public String userUpdate(User user, HttpSession session) throws Exception {
+		
+		service.userUpdate(user);
+		session.invalidate();
+		return "Login";
+		
 	}
 	
 	/** 회원탈퇴 */
@@ -63,5 +98,9 @@ public class UserController {
 		
 		return "redirect:/";
 	}
+	
+	
+	
+	
 
 }

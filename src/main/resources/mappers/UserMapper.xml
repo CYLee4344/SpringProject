@@ -28,11 +28,18 @@
 	<select id="login" 
 		resultMap="userMap"
 		resultType="com.spring.selection.model.User">
-		SELECT user_id, user_pw, user_name FROM user
+		SELECT user_id, user_pw, user_email, user_name, user_tel, postcode, address, address_detail FROM user
 		WHERE user_id = #{user_id} AND user_pw = #{user_pw};
 	</select>
 	
-	<!-- 탈퇴 -->
+	<!-- 개인정보수정 -->
+	<update id="userUpdate"
+		parameterType="com.spring.selection.model.User">
+		UPDATE user SET user_pw=#{user_pw}, user_email=#{user_email}, user_tel=#{user_tel}, postcode=#{postcode}, address=#{address}, address_detail=#{address_detail}
+		WHERE user_id = #{user_id}
+	</update>
+	
+	<!-- 회원탈퇴 -->
 	<delete id="userDelete"
 		parameterType="com.spring.selection.model.User">
 		DELETE FROM user WHERE user_id = #{user_id} AND user_pw = #{user_pw};

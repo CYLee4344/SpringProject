@@ -31,4 +31,10 @@ public class UserDaoImpl implements UserDao {
 		
 	}
 
+	@Override
+	public void userUpdate(User user) throws Exception {
+		
+		sqlSession.update("UserMapper.userUpdate", user);
+	}
+
 }

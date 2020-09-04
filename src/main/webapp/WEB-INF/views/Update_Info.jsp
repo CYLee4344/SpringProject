@@ -43,17 +43,17 @@
 
     <!-- 가입폼 시작 -->
     <div id="form_wrap">
-        <form method="post" class="form-horizontal" name="join_form" id="join_form">
+        <form method="post" action="${pageContext.request.contextPath}/UserUpdate.do" class="form-horizontal" name="join_form" id="join_form">
             <div class="form-group">
                 <label for="user_name" class="col-md-2">이름 <span class="identify">*</span></label>
                 <div class="col-md-10">
-                    <input type="text" name="user_name" id="user_name" class="form-control" value=${user.user_name} readonly/>
+                    <input type="text" name="user_name" id="user_name" class="form-control" value="${user.user_name}" readonly/>
                 </div>
             </div>
             <div class="form-group">
                 <label for="user_id" class="col-md-2">아이디 <span class="identify">*</span></label>
                 <div class="col-md-10">
-                    <input type="text" name="user_id" id="user_id" class="form-control" value="cyl******" readonly />
+                    <input type="text" name="user_id" id="user_id" class="form-control" value="${user.user_id}" readonly />
                 </div>
             </div>
             <div class="form-group">
@@ -73,14 +73,14 @@
             <div class="form-group">
                 <label for="email" class="col-md-2">이메일</label>
                 <div class="col-md-10">
-                    <input type="text" name="email" id="email" class="form-control" value="원래 이메일"/>
+                    <input type="text" name="user_email" id="user_email" class="form-control" value="${user.user_email}"/>
                     <p id="email_wrong_msg" class="join_form_msg">올바르지 않은 이메일입니다.</p>
                 </div>
             </div>
             <div class="form-group">
                 <label for="tel" class="col-md-2">핸드폰</label>
                 <div class="col-md-10">
-                    <input type="tel" name="tel" id="tel" class="form-control" value="원래 번호"/>
+                    <input type="tel" name="user_tel" id="user_tel" class="form-control" value="${user.user_tel}"/>
                     <p id="tel_wrong_msg" class="join_form_msg">올바르지 않은 핸드폰 번호입니다.</p>
                 </div>
             </div>
@@ -91,10 +91,10 @@
 
                 <div class="col-md-10">
                     <div id="findadd">
-                        <input type="text" id="sample6_postcode" placeholder="우편번호" class="form-control postcode">
+                        <input type="text" name="postcode" id="sample6_postcode" value="${user.postcode}" class="form-control postcode">
                         <input type="button" id="sample6_postcode_btn" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="form-control postcode">
-                        <input type="text" id="sample6_address" placeholder="주소" class="form-control">
-                        <input type="text" id="sample6_detailAddress" placeholder="상세주소" class="form-control">
+                        <input type="text" name="address" id="sample6_address" value="${user.address}" class="form-control">
+                        <input type="text" name="address_detail" id="sample6_detailAddress" value="${user.address_detail}" class="form-control">
                     </div>
                 </div>
             </div>
@@ -120,7 +120,7 @@
         <div id="pop">
                 <span>정보 변경을 취소하시겠습니까?</span>
                 <img src="assets/image/close2.png">
-                <span><a href="Main.html">확인</a></span>
+                <span><a href="${pageContext.request.contextPath}/index.do">확인</a></span>
         </div>
     </div>
 
@@ -156,61 +156,64 @@
 
                 // 유효성 검사
                 $("#join_form").submit(function() {
-                var pwCheck = RegExp(/^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/);
-                var pw_val = $("#user_pw").val();
-                var pw_re_val = $("#user_pw_re").val();
+                    var pwCheck = RegExp(/^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/);
+                    var pw_val = $("#user_pw").val();
+                    var pw_re_val = $("#user_pw_re").val();
 
-                var emailCheck = RegExp(/^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/);
-                var email_val = $("#email").val();
+                    var emailCheck = RegExp(/^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/);
+                    var email_val = $("#email").val();
 
-                var telCheck = RegExp(/(01[016789])([1-9]{1}[0-9]{2,3})([0-9]{4})$/);
-                var tel_val = $("#tel").val();
+                    var telCheck = RegExp(/(01[016789])([1-9]{1}[0-9]{2,3})([0-9]{4})$/);
+                    var tel_val = $("#tel").val();
 
-                var addr = $("#sample6_postcode").val();
+                    var addr = $("#sample6_postcode").val();
+					
+                    /**
+                    if (pw_val && !pwCheck.test(pw_val)) {
+                        $("#user_pw").focus();
+                        $(".join_form_msg").hide();
+                        $("#pw_wrong_msg").show();
+                        return false;
+                    } else if (!pw_re_val || pw_re_val.trim() == "") {
+                        $("#user_pw_re").focus();
+                        $(".join_form_msg").hide();
+                        $("#pw_re_blank_msg").show();
+                        return false;
+                    } else if (pw_re_val != pw_val) {
+                        $("#user_pw_re").focus();
+                        $(".join_form_msg").hide();
+                        $("#pw_re_wrong_msg").show();
+                        return false;
+                    } else if (!email_val || email_val.trim() == "") {
+                        $("#email").focus();
+                        $(".join_form_msg").hide();
+                        $("#email_blank_msg").show();
+                        return false;
+                    } else if (!emailCheck.test(email_val)) {
+                        $("#email").focus();
+                        $(".join_form_msg").hide();
+                        $("#email_wrong_msg").show();
+                        return false;
+                    } else if (!tel_val || tel_val.trim() == "") {
+                        $("#tel").focus();
+                        $(".join_form_msg").hide();
+                        $("#tel_blank_msg").show();
+                        return false;
+                    } else if (!telCheck.test(tel_val)) {
+                        $("#tel").focus();
+                        $(".join_form_msg").hide();
+                        $("#tel_wrong_msg").show();
+                        return false;
+                    } else if (!addr) {
+                        $("#sample6_postcode").focus();
+                        $(".join_form_msg").hide();
+                        $("#addr_blank_msg").show();
+                        return false;
+                    }
+                    */
 
-                if (pw_val && !pwCheck.test(pw_val)) {
-                    $("#user_pw").focus();
-                    $(".join_form_msg").hide();
-                    $("#pw_wrong_msg").show();
-                    return false;
-                } else if (!pw_re_val || pw_re_val.trim() == "") {
-                    $("#user_pw_re").focus();
-                    $(".join_form_msg").hide();
-                    $("#pw_re_blank_msg").show();
-                    return false;
-                } else if (pw_re_val != pw_val) {
-                    $("#user_pw_re").focus();
-                    $(".join_form_msg").hide();
-                    $("#pw_re_wrong_msg").show();
-                    return false;
-                } else if (!email_val || email_val.trim() == "") {
-                    $("#email").focus();
-                    $(".join_form_msg").hide();
-                    $("#email_blank_msg").show();
-                    return false;
-                } else if (!emailCheck.test(email_val)) {
-                    $("#email").focus();
-                    $(".join_form_msg").hide();
-                    $("#email_wrong_msg").show();
-                    return false;
-                } else if (!tel_val || tel_val.trim() == "") {
-                    $("#tel").focus();
-                    $(".join_form_msg").hide();
-                    $("#tel_blank_msg").show();
-                    return false;
-                } else if (!telCheck.test(tel_val)) {
-                    $("#tel").focus();
-                    $(".join_form_msg").hide();
-                    $("#tel_wrong_msg").show();
-                    return false;
-                } else if (!addr) {
-                    $("#sample6_postcode").focus();
-                    $(".join_form_msg").hide();
-                    $("#addr_blank_msg").show();
-                    return false;
-                }
-
-        }); // submit() 끝
+            }); // submit() 끝 
+                
     }); // $(function()) 끝
 
         // 주소 API

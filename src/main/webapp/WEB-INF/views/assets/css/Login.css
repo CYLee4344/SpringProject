@@ -134,3 +134,11 @@ button.swal2-confirm.swal2-styled {
     border-left-color: #D0A793;
     border-right-color: #D0A793;
 }
+
+/** ajxa 메시지 **/
+#ajax {
+	color: red;
+	font-size: 12px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
