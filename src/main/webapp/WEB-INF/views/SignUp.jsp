@@ -41,8 +41,10 @@
         <form method="post" action="${pageContext.request.contextPath}/UserRegister.do" class="form-horizontal" name="join_form" id="join_form">
             <div class="form-group">
                 <label for="user_id" class="col-md-2">아이디 <span class="identify">*</span></label>
-                <div class="col-md-10">
+                <div id="idCheck_wrap" class="col-md-10">
                     <input type="text" name="user_id" id="user_id" class="form-control" />
+                    <button id="idCheck" type="button" class="form-control">중복체크</button>
+                    <p id="ajax" style="color: red; font-size: 12px; margin-top: 5px; margin-bottom: 5px;"></p>
                     <p id="id_blank_msg" class="join_form_msg">아이디를 입력해주세요.</p>
                     <p id="id_wrong_msg" class="join_form_msg">8~16자의 영문 소문자, 숫자만 입력 가능합니다.</p>
                 </div>
@@ -134,6 +136,42 @@
 		        $("#search2 .search2 li:last-child").click(function() {
 	                $("#date").slideToggle(150);
 	           	});
+		        
+		        /** id 중복확인 */
+		        $("#idCheck").click(function() {
+		        	var idCheck= RegExp(/^[a-z0-9]{8,16}$/);
+		        	var id_val = $("#user_id").val();
+		        	if (!id_val || id_val.trim() == "") {
+                        $("#user_id").focus();
+                        $("#id_blank_msg").show(); 
+                        $("#ajax").html("");
+		        	} else if (!idCheck.test(id_val)) {
+                        $("#user_id").focus();
+                        $(".join_form_msg").hide();
+                        $("#id_wrong_msg").show();
+                        $("#ajax").html("");
+		        	} else {
+		        		$("#id_blank_msg").hide(); 
+		        		$("#id_wrong_msg").hide();
+		        		$.ajax({
+			        		url: "${pageContext.request.contextPath}/IdCheck.do",
+			        		type: "post",
+			        		data: {"user_id" : id_val},
+			        		success: function(data){
+			        			if(data == 1) {
+			        				$("#ajax").html("중복된 아이디입니다.");
+			        			} else if(data == 0){
+			        				$("#ajax").html("사용가능한 아이디입니다.");
+			        			}
+			        		}
+			        	})
+		        	}
+			     });
+		        	
+		        	
+		        	  
+		        	
+		        
                 
 
                 $("#join_form").submit(function() {

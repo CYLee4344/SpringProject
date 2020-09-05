@@ -91,6 +91,7 @@
             <artifactId>javax.inject</artifactId>
             <version>1</version>
         </dependency>
+        
 
         <!-- ========== Spring을 구성하기 위한 기본 라이브러리들 추가 ========== -->
         <!-- 1) Spring Context Support -->
@@ -192,6 +193,20 @@
             <version>4.7</version>
             <scope>test</scope>
         </dependency>
+        
+        <!-- jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        
+        <dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.9.2</version>
+		</dependency>
+        
     </dependencies>
     <build>
         <plugins>

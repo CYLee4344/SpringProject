@@ -10,4 +10,6 @@ public interface UserService {
 	public void userDelete(User user) throws Exception;
 	
 	public void userUpdate(User user) throws Exception;
+	
+	public int idCheck(User user) throws Exception;
 }

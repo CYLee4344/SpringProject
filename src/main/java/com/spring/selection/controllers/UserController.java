@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -48,11 +49,11 @@ public class UserController {
 		}
 	}
 	
-	
-//	@RequestMapping(value = "/UserLogin.do", method = RequestMethod.POST)
-//	public ModelAndView login(@ModelAttribute User user, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
+//	@RequestMapping(value = "/login.do", method = {RequestMethod.GET, RequestMethod.POST})
+//	public ModelAndView login(@ModelAttribute User user, HttpServletResponse response, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
 //		ModelAndView mav = new ModelAndView();
 //		HttpSession session = req.getSession();
+//		PrintWriter out= response.getWriter();
 //		// 세션 유지 시간 session.setMaxInactiveInterval();
 //		User login = service.login(user);
 //		
@@ -64,9 +65,31 @@ public class UserController {
 //			session.setAttribute("user", login);
 //			mav.setViewName("index");
 //		}
-//
 //		return mav;
 //	}
+
+//	@RequestMapping(value = "/bottomLogin.do")
+//	public String bottomLogin(HttpServletRequest req) {
+//		HttpSession session = req.getSession();
+//		if(session.getAttribute("user") == null) {
+//			return "Login";
+//		} else {
+//			ale
+//			return "index";
+//		}
+//	}
+	
+	/** 아이디 중복체크 */
+	@ResponseBody
+	@RequestMapping(value = "/IdCheck.do", method = RequestMethod.POST)
+	public int idCheck(User user) throws Exception {
+		int result = service.idCheck(user);
+		return result;
+	}
+	
+	
+	
+	
 	
 	/** 로그아웃 */
 	@RequestMapping(value = "/UserLogout.do", method = RequestMethod.GET)
@@ -98,9 +121,6 @@ public class UserController {
 		
 		return "redirect:/";
 	}
-	
-	
-	
 	
 
 }

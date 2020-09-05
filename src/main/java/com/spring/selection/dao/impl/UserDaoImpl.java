@@ -37,4 +37,11 @@ public class UserDaoImpl implements UserDao {
 		sqlSession.update("UserMapper.userUpdate", user);
 	}
 
+	@Override
+	public int idCheck(User user) throws Exception {
+		
+		int result = sqlSession.selectOne("UserMapper.idCheck", user);
+		return result;
+	}
+
 }

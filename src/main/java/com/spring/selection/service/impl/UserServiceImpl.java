@@ -35,4 +35,10 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
+	@Override
+	public int idCheck(User user) throws Exception {
+		int result = dao.idCheck(user);
+		return result;
+	}
+
 }

@@ -30,7 +30,7 @@
     <!-- 로그인 정보 입력 -->
 	<div class="content">
     <div class="login_input_area">
-        <form id="loginForm" class="form-inline" method="post" action="${pageContext.request.contextPath}/UserLogin.do" >
+        <form id="loginForm" class="form-inline" method="post" action="/UserLogin.do" >
             <input id="user_id" type="text" name="user_id" class="form-control" placeholder="아이디를 입력하세요." />
             <br />
             <input id="user_pw" type="password" name="user_pw" class="form-control" placeholder="비밀번호를 입력하세요." />

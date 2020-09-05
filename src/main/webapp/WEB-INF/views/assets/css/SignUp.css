@@ -119,3 +119,15 @@
 	background: #E0CFBD;
 	border: 1px solid #E0CFBD;
 }
+
+/** 아이디 중복체크 */
+#form_wrap #join_form .form-group #idCheck_wrap .form-control {
+    display: inline-block;
+    width: calc(50% - 3px);
+    vertical-align: middle;
+}
+
+#form_wrap #join_form #idCheck_wrap button#idCheck {
+    border: 1px solid rgb(208, 167, 147);
+    box-sizing: border-box;
+}
