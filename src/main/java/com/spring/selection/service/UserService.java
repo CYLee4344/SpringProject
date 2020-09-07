@@ -12,4 +12,8 @@ public interface UserService {
 	public void userUpdate(User user) throws Exception;
 	
 	public int idCheck(User user) throws Exception;
+	
+	public User findID(User user) throws Exception;
+	
+	public int emailCheck(User user) throws Exception;
 }

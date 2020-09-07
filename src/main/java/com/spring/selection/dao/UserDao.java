@@ -4,19 +4,25 @@ import com.spring.selection.model.User;
 
 public interface UserDao {
 	
-	/** È¸¿ø°¡ÀÔ */
+	/** íšŒì›ê°€ì… */
 	public void register(User user) throws Exception;
 	
-	/** ¾ÆÀÌµğ Áßº¹ Ã¼Å© */
+	/** ì•„ì´ë”” ì¤‘ë³µ ì²´í¬ */
 	public int idCheck(User user) throws Exception;
 	
-	/** ·Î±×ÀÎ */
+	/** ë¡œê·¸ì¸ */
 	public User login(User user) throws Exception;
 	
-	/** Å»Åğ */
+	/** íƒˆí‡´ */
 	public void userDelete(User user) throws Exception;
 	
-	/** Á¤º¸¼öÁ¤ */
+	/** ì •ë³´ìˆ˜ì • */
 	public void userUpdate(User user) throws Exception;
+	
+	/** ì•„ì´ë”” ì°¾ê¸° */
+	public User findID(User user) throws Exception;
+	
+	/** ì´ë©”ì¼ ìœ ë¬´ì²´í¬ */
+	public int emailCheck(User user) throws Exception;
 
 }

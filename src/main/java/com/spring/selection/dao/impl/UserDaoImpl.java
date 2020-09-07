@@ -15,6 +15,7 @@ public class UserDaoImpl implements UserDao {
 	
 	@Override
 	public void register(User user) throws Exception {
+		
 		sqlSession.insert("UserMapper.register", user);
 	}
 
@@ -28,7 +29,6 @@ public class UserDaoImpl implements UserDao {
 	public void userDelete(User user) throws Exception {
 		
 		sqlSession.delete("UserMapper.userDelete", user);
-		
 	}
 
 	@Override
@@ -41,6 +41,18 @@ public class UserDaoImpl implements UserDao {
 	public int idCheck(User user) throws Exception {
 		
 		int result = sqlSession.selectOne("UserMapper.idCheck", user);
+		return result;
+	}
+
+	@Override
+	public User findID(User user) throws Exception {
+
+		return sqlSession.selectOne("UserMapper.findID", user);
+	}
+
+	@Override
+	public int emailCheck(User user) throws Exception {
+		int result = sqlSession.selectOne("UserMapper.emailCheck", user);
 		return result;
 	}
 

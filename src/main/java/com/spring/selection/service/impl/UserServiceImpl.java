@@ -7,6 +7,7 @@ import com.spring.selection.dao.UserDao;
 import com.spring.selection.model.User;
 import com.spring.selection.service.UserService;
 
+
 @Service
 public class UserServiceImpl implements UserService{
 	@Autowired
@@ -25,19 +26,29 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void userDelete(User user) throws Exception {
-		dao.userDelete(user);
-		
+		dao.userDelete(user);		
 	}
 
 	@Override
 	public void userUpdate(User user) throws Exception {
-		dao.userUpdate(user);
-		
+		dao.userUpdate(user);	
 	}
 
 	@Override
 	public int idCheck(User user) throws Exception {
 		int result = dao.idCheck(user);
+		return result;
+	}
+
+	@Override
+	public User findID(User user) throws Exception {
+		
+		return dao.findID(user);
+	}
+
+	@Override
+	public int emailCheck(User user) throws Exception {
+		int result = dao.emailCheck(user);
 		return result;
 	}
 

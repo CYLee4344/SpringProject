@@ -50,5 +50,15 @@
 		DELETE FROM user WHERE user_id = #{user_id} AND user_pw = #{user_pw};
 	</delete>
 	
+	<!-- 아이디 찾기 -->
+	<select id="findID" 
+		resultType="com.spring.selection.model.User" parameterType="String">
+		SELECT user_id, user_name FROM user WHERE user_email = #{user_email}
+	</select>
+	
+	<!-- 이메일 유무체크 -->
+	<select id="emailCheck" resultType="int">
+		SELECT COUNT(*) FROM user WHERE user_email = #{user_email};
+	</select>
 	
 </mapper>
