@@ -23,7 +23,7 @@ public class HomeController {
 	@RequestMapping(value = "/")
 	public String home() {
 
-		return "index";
+		return "ProductList";
 	}
 	
 	@RequestMapping(value = "/login.do")

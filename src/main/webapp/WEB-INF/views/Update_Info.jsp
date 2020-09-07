@@ -101,7 +101,7 @@
 
             <div class="form-group">
                 <div class="text-center">
-                    <button class="update_cancel">취소</button>
+                    <button type="button" class="update_cancel">취소</button>
                     <button type="submit">변경</button>
                 </div>
             </div>
@@ -151,7 +151,7 @@
                 $("#pop img").click(function() {
                     $("#pop_container").fadeOut(300);
                     $("#pop").fadeOut(300);
-                    $('#body').css({'overflow': 'auto', 'height': '100%'});
+                    $('body').css({'overflow': 'auto', 'height': '100%'});
                 });
 
                 // 유효성 검사

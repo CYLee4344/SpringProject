@@ -30,10 +30,7 @@
 
         <div id="menu_bar">
             <ul>
-                <li><a href="Best.jsp">
-				<c:if test="${user != null}">${user.user_id}</c:if>
-				<c:if test="${user == null}">없음</c:if>
-				</a></li>
+                <li><a href="Best.jsp">베스트</a></li>
                 <li><a href="New.jsp">신상품</a></li>
                 <li><a href="Recommend.jsp">추천상품</a></li>
                 <li><a href="Top.jsp">탑</a></li>

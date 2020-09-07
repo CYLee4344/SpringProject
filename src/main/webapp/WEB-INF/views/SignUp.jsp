@@ -159,7 +159,7 @@
 			        		data: {"user_id" : id_val},
 			        		success: function(data){
 			        			if(data == 1) {
-			        				$("#ajax").html("중복된 아이디입니다.");
+			        				$("#ajax").html("이미 존재하는 아이디입니다.");
 			        			} else if(data == 0){
 			        				$("#ajax").html("사용가능한 아이디입니다.");
 			        			}

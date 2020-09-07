@@ -5,7 +5,10 @@
 <div id="bottom_bar">
     <ul>
         <li><a href="#"><img src="assets/image/menu.png"></a></li>
-        <li><a href="${pageContext.request.contextPath}/login.do"><img src="assets/image/lock.png"></a></li>
+        <li>
+	        <c:if test="${user != null}">${user.user_name}님</c:if>
+	        <c:if test="${user == null}"><a href="${pageContext.request.contextPath}/login.do"><img src="assets/image/lock.png"></a></c:if>
+        </li>
         <li><a href="${pageContext.request.contextPath}/index.do"><img src="assets/image/home.png"></a></li>
         <li><a href="MyHeart.jsp"><img src="assets/image/heart.png"></a></li>
         <li>
