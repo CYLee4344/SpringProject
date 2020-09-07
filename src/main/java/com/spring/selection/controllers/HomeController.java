@@ -50,10 +50,23 @@ public class HomeController {
 		return "MyPage";
 	}
 	
-	@RequestMapping(value = "/update_info.do")
-	public String update_info() {
+	@RequestMapping(value = "/find_id.do")
+	public String find_id() {
 		
-		return "Update_Info";
+		return "Find_ID";
 	}
+	
+	@RequestMapping(value = "/findbyemail.do")
+	public String findbyemail() {
+		
+		return "FindByEmail";
+	}
+	
+	@RequestMapping(value = "/search_id.do")
+	public String search_id() {
+		
+		return "Search_ID";
+	}
+	
 	
 }
